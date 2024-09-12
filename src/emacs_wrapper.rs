@@ -643,7 +643,7 @@ fn get_answer<'a>(env: &'a Env, answer: &WrappedAnswer, key: AnswerKey) -> Resul
     AnswerKey::Text => unwrapped_answer.text.to_string().into_lisp(env),
     AnswerKey::Success => unwrapped_answer.success.into_lisp(env),
     AnswerKey::Error => match unwrapped_answer.error.clone() {
-      Some(error) => Ok(RefCell::new(error).into_lisp(env)?),
+      Some(error) => Ok(error.into_lisp(env)?),
       None => ().into_lisp(env),
     },
     AnswerKey::CursorX => to_i64(unwrapped_answer.cursor_x).into_lisp(env),
